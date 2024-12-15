@@ -22,6 +22,8 @@ friend receiving the baton is friend 2. Return (3, 2).
 
 haskell stack via https://www.haskell.org/ghcup/ or https://stackage.org
 
+fourmolu for standardized formatting (`stack install fourmolu` via https://github.com/fourmolu/fourmolu)
+
 ## Verify result
 
 run `stack test`
