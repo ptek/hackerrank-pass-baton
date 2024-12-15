@@ -23,7 +23,7 @@ passBaton friends time = (passer, receiver)
   -- in the previous checks. Therefore, when position_in_sequence is 0, it means
   -- that we are at the end of the sequence and the batton is being passed back
   -- to the first friend
-  which_direction_passer :: Direction =
+  which_direction :: Direction =
     if position_in_sequence == 0
       then PassingBackToBeginning
       else
@@ -31,23 +31,12 @@ passBaton friends time = (passer, receiver)
           then Forward
           else Back
 
-  -- The direction of the receiver turns backwards when the baton reaches the
-  -- middle of the sequence. As the sequence is forwards, then backwards, the
-  -- middle will be when the baton passes all the friends
-  which_direction_receiver :: Direction =
-    if position_in_sequence == 0
-      then PassingBackToBeginning
-      else
-        if position_in_sequence + 1 < friends
-          then Forward
-          else Back
-
-  passer = case which_direction_passer of
+  passer = case which_direction of
     PassingBackToBeginning -> 2
     Forward -> position_in_sequence
     Back -> friends * 2 - position_in_sequence
 
-  receiver = case which_direction_receiver of
+  receiver = case which_direction of
     PassingBackToBeginning -> 1
     Forward -> position_in_sequence + 1
-    _ -> friends * 2 - position_in_sequence - 1
+    Back -> friends * 2 - position_in_sequence - 1
