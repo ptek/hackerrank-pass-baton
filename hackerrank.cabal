@@ -1,0 +1,46 @@
+cabal-version:       2.2
+
+name:                hackerrank
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/ptek/hackerrank#readme
+license:             BSD-3-Clause
+license-file:        LICENSE
+author:              Pavlo Kerestey
+maintainer:          pkerestey@gmail.com
+copyright:           2024 Pavlo Kerestey
+category:            Hackerrank
+build-type:          Simple
+extra-source-files:  README.md
+
+executable hackerrank
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                      ,text
+                      ,protolude
+                      ,fmt
+  ghc-options:         -Wall
+                       -Wcompat
+                       -Widentities
+                       -Wincomplete-record-updates
+                       -Wincomplete-uni-patterns
+                       -Wmissing-export-lists
+                       -Wmissing-home-modules
+                       -Wpartial-fields
+                       -Wredundant-constraints
+  other-modules: Baton
+
+test-suite hackerrank-unit
+  main-is:         test.hs
+  type:            exitcode-stdio-1.0
+  build-depends:   base
+                  ,tasty
+                  ,tasty-hunit
+                  ,text
+                  ,protolude
+                  ,fmt
+  hs-source-dirs:      src, tests
+  other-modules: Baton
