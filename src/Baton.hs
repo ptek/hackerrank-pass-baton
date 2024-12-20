@@ -1,4 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 
@@ -21,9 +20,12 @@ passBaton friends time = Just (passer, receiver)
     -- time is always positive, because the case of 0 is pattern matched against
     -- in the previous checks. Therefore, when position_in_sequence is 0, it means
     -- that we are at the end of the sequence and the baton is being passed back
-    -- to the first friend
+    -- to the first friend. We still check for time not to be equal 0 here so that
+    -- the function is complete in its definition, and does not introduce bugs
+    -- sometime in the future if we stop handling the case of time being 0 in
+    -- the other part of the code any more
     which_direction :: Direction
-      | position_in_sequence == 0 = PassingBackToBeginning
+      | position_in_sequence == 0 && time /= 0 = PassingBackToBeginning
       | position_in_sequence < friends = Forward
       | otherwise = Back
 
